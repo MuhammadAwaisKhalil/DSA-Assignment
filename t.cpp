@@ -1,6 +1,11 @@
 #include<iostream>
 #include<vector>
 using namespace std;
+
+
+//Node Classes Start
+
+//Node Classes for singly linked lists
 class SingleIntegerNode
 {
     public:
@@ -54,7 +59,70 @@ class SingleLongNode
     }
 };
 
+//Node Classes for doubly linked list
+class DoublyIntegerNode
+{
+    public:
+    int val;
+    DoublyIntegerNode *prev;
+    DoublyIntegerNode *next;
 
+    DoublyIntegerNode(int val, DoublyIntegerNode *prev=nullptr, DoublyIntegerNode *next=nullptr){
+        this->val=val;
+        this->prev=prev;
+        this->next=next;
+    }
+};
+
+class DoublyFloatNode
+{
+    public:
+    float val;
+    DoublyFloatNode *prev;
+    DoublyFloatNode *next;
+
+    DoublyFloatNode(float val, DoublyFloatNode *prev=nullptr, DoublyFloatNode *next=nullptr){
+        this->val=val;
+        this->prev=prev;
+        this->next=next;
+    }
+};
+
+class DoublyCharNode
+{
+    public:
+    char val;
+    DoublyCharNode *prev;
+    DoublyCharNode *next;
+
+    DoublyCharNode(char val, DoublyCharNode *prev=nullptr, DoublyCharNode *next=nullptr){
+        this->val=val;
+        this->prev=prev;
+        this->next=next;
+    }
+};
+
+class DoublyLongNode
+{
+    public:
+    long val;
+    DoublyLongNode *prev;
+    DoublyLongNode *next;
+
+    DoublyLongNode(long val, DoublyLongNode *prev=nullptr, DoublyLongNode *next=nullptr){
+        this->val=val;
+        this->prev=prev;
+        this->next=next;
+    }
+};
+
+//Node Classes End
+
+//Linked List classes Start
+
+
+// Awais Start: Doing Single Linked List
+//Integer Linked list
 class IntegerLinkedList
 {
     public:
@@ -240,6 +308,7 @@ class IntegerLinkedList
 
 };
 
+//Float Linked list
 class FloatLinkedList
 {
     public:
@@ -424,6 +493,7 @@ class FloatLinkedList
 
 };
 
+//Char Linked list
 class CharLinkedList
 {
     public:
@@ -606,6 +676,7 @@ class CharLinkedList
     }
 };
 
+//Long Linked list
 class LongLinkedList
 {
         public:
@@ -789,62 +860,10 @@ class LongLinkedList
 
 };
 
-class DoublyIntegerNode
-{
-    public:
-    int val;
-    DoublyIntegerNode *prev;
-    DoublyIntegerNode *next;
+//Awais End
 
-    DoublyIntegerNode(int val, DoublyIntegerNode *prev=nullptr, DoublyIntegerNode *next=nullptr){
-        this->val=val;
-        this->prev=prev;
-        this->next=next;
-    }
-};
-
-class DoublyFloatNode
-{
-    public:
-    float val;
-    DoublyFloatNode *prev;
-    DoublyFloatNode *next;
-
-    DoublyFloatNode(float val, DoublyFloatNode *prev=nullptr, DoublyFloatNode *next=nullptr){
-        this->val=val;
-        this->prev=prev;
-        this->next=next;
-    }
-};
-
-class DoublyCharNode
-{
-    public:
-    char val;
-    DoublyCharNode *prev;
-    DoublyCharNode *next;
-
-    DoublyCharNode(char val, DoublyCharNode *prev=nullptr, DoublyCharNode *next=nullptr){
-        this->val=val;
-        this->prev=prev;
-        this->next=next;
-    }
-};
-
-class DoublyLongNode
-{
-    public:
-    long val;
-    DoublyLongNode *prev;
-    DoublyLongNode *next;
-
-    DoublyLongNode(long val, DoublyLongNode *prev=nullptr, DoublyLongNode *next=nullptr){
-        this->val=val;
-        this->prev=prev;
-        this->next=next;
-    }
-};
-
+//Abdur Rahman Start: Doubly Linked List
+//Integer Doubly Linked list
 class DoublyIntegerLinkedList
 {
     public:
@@ -1057,6 +1076,7 @@ class DoublyIntegerLinkedList
 
 };
 
+//Float Doubly Linked list
 class DoublyFloatLinkedList
 {
     public:
@@ -1269,6 +1289,7 @@ class DoublyFloatLinkedList
 
 };
 
+//Char Doubly Linked list
 class DoublyCharLinkedList
 {
     public:
@@ -1481,6 +1502,7 @@ class DoublyCharLinkedList
 
 };
 
+//Long Doubly Linked list
 class DoublyLongLinkedList
 {
     public:
@@ -1693,7 +1715,1581 @@ class DoublyLongLinkedList
 
 };
 
-int main()
-{
-    
+//Abdur Rahman End
+
+// Waleed Start: Doing Single Circular Linked List
+//Circular Integer Linked list
+class CircularIntegerLinkedList{
+	private: 
+		SingleIntegerNode *tail;
+		
+	public: 
+		CircularIntegerLinkedList(){
+			tail = nullptr;
+		}
+		
+		void insertAtHead(int val){
+		    
+		    if(!tail){
+		    	tail = new SingleIntegerNode(val);
+		    	tail->next = tail;
+		    	return;
+			}
+			
+			SingleIntegerNode *newNode = new SingleIntegerNode(val, tail->next);
+			tail->next = newNode;
+		}
+		
+		void insertAtTail(int val){
+		    
+		    if(!tail){
+		    	tail = new SingleIntegerNode(val);
+		    	tail->next = tail;
+		    	return;
+			}
+			
+			SingleIntegerNode *newNode = new SingleIntegerNode(val, tail->next);
+			tail->next = newNode;
+			tail = newNode;
+		}
+		
+		void insertAtIndex(int val, int index){
+			 if (index < 0) {
+		        cout << "Invalid index." << endl;
+		        return;
+		    }
+		
+		    if (!tail) {
+		        if (index == 0) {
+		            insertAtTail(val);
+		        }
+		        else {
+		            cout << "Index out of bounds. List is empty." << endl;
+		        }
+		        return;
+		    }
+		
+		    if (index == 0) {
+		        insertAtHead(val);
+		        return;
+		    }
+			
+			SingleIntegerNode *temp = tail->next;
+			int j = 1;
+			do{
+				if(j == index){
+					
+					if(temp == tail){
+						insertAtTail(val);
+						return;
+					}
+					
+					SingleIntegerNode *newNode = new SingleIntegerNode(val, temp->next);
+					temp->next = newNode;
+					return;
+				}
+				
+				j++;
+				temp = temp->next;
+			}
+			while(temp != tail->next);
+		}
+		
+		//deletion function
+		void deleteAtHead(){
+			if(!tail){
+				cout << "List is empty. Can't delete!" << endl;
+				return;
+			}
+			
+			if(tail->next == tail){
+				SingleIntegerNode *temp = tail;
+				tail == nullptr;
+				delete temp;
+				return;
+			}
+			
+			SingleIntegerNode *temp = tail->next;
+			tail->next = temp->next;
+			delete temp;
+			return;
+		}
+		
+		void deleteAtTail(){
+			if(!tail){
+				cout << "List is empty. Can't delete!" << endl;
+				return;
+			}
+			
+			if(tail->next == tail){
+				SingleIntegerNode *temp = tail;
+				tail = nullptr;
+				delete temp;
+				return;
+			}
+			
+			SingleIntegerNode *temp = tail->next;
+		
+		    while (temp->next != tail) {
+		        temp = temp->next;
+		    }
+		
+		    // Delete the old tail
+		    SingleIntegerNode *temp2 = tail;
+		
+		    temp->next = tail->next;
+		    tail = temp;
+		
+		    delete temp2;
+		}
+		
+		void deleteAtIndex(int index) {
+
+		    if (!tail) {
+		        cout << "List is empty. Can't delete!" << endl;
+		        return;
+		    }
+		
+		    if (index < 0) {
+		        cout << "Invalid Index." << endl;
+		        return;
+		    }
+		
+		    if (index == 0) {
+		        deleteAtHead();
+		        return;
+		    }
+		
+		    SingleIntegerNode *temp = tail->next;
+		    SingleIntegerNode *prev = tail;
+		
+		    int j = 0;
+		
+		    do {
+		
+		        if (j == index) {
+		            break;
+		        }
+		
+		        prev = temp;
+		        temp = temp->next;
+		        j++;
+		
+		    } while (temp != tail->next);
+		
+		    if (j != index) {
+		        cout << "Invalid Index." << endl;
+		        return;
+		    }
+		
+		    if (temp == tail) {
+		        deleteAtTail();
+		        return;
+		    }
+		
+		    prev->next = temp->next;
+		    delete temp;
+		}
+		
+		void display() {
+		    if (!tail) {
+		        cout << "List is empty!" << endl;
+		        return;
+		    }
+		
+		    SingleIntegerNode *temp = tail->next;
+		
+		    cout << "head";
+		
+		    do {
+		        cout << " -> " << temp->val;
+		        temp = temp->next;
+		    } while (temp != tail->next);
+		
+		    cout << " -> head" << endl;
+		}
+		
+		vector<int> findMatch(int val){
+			vector<int> values;
+			if (!tail) {
+		        cout << "List is empty!" << endl;
+		        return values;
+		    }
+		
+		    SingleIntegerNode *temp = tail->next;
+			int i = 0;
+			do {
+		        if(temp->val == val){
+		        	values.push_back(i);
+				}
+				i++;
+		        temp = temp->next;
+		    } while (temp != tail->next);
+			return values;
+		}
+};
+
+//Circular Float Linked list
+class CircularFloatLinkedList{
+	private: 
+		SingleFloatNode *tail;
+		
+	public: 
+		CircularFloatLinkedList(){
+			tail = nullptr;
+		}
+		
+		void insertAtHead(float val){
+		    
+		    if(!tail){
+		    	tail = new SingleFloatNode(val);
+		    	tail->next = tail;
+		    	return;
+			}
+			
+			SingleFloatNode *newNode = new SingleFloatNode(val, tail->next);
+			tail->next = newNode;
+		}
+		
+		void insertAtTail(float val){
+		    
+		    if(!tail){
+		    	tail = new SingleFloatNode(val);
+		    	tail->next = tail;
+		    	return;
+			}
+			
+			SingleFloatNode *newNode = new SingleFloatNode(val, tail->next);
+			tail->next = newNode;
+			tail = newNode;
+		}
+		
+		void insertAtIndex(float val, int index){
+			 if (index < 0) {
+		        cout << "Invalid index." << endl;
+		        return;
+		    }
+		
+		    if (!tail) {
+		        if (index == 0) {
+		            insertAtTail(val);
+		        }
+		        else {
+		            cout << "Index out of bounds. List is empty." << endl;
+		        }
+		        return;
+		    }
+		
+		    if (index == 0) {
+		        insertAtHead(val);
+		        return;
+		    }
+			
+			SingleFloatNode *temp = tail->next;
+			int j = 1;
+			do{
+				if(j == index){
+					
+					if(temp == tail){
+						insertAtTail(val);
+						return;
+					}
+					
+					SingleFloatNode *newNode = new SingleFloatNode(val, temp->next);
+					temp->next = newNode;
+					return;
+				}
+				
+				j++;
+				temp = temp->next;
+			}
+			while(temp != tail->next);
+		}
+		
+		//deletion function
+		void deleteAtHead(){
+			if(!tail){
+				cout << "List is empty. Can't delete!" << endl;
+				return;
+			}
+			
+			if(tail->next == tail){
+				SingleFloatNode *temp = tail;
+				tail == nullptr;
+				delete temp;
+				return;
+			}
+			
+			SingleFloatNode *temp = tail->next;
+			tail->next = temp->next;
+			delete temp;
+			return;
+		}
+		
+		void deleteAtTail(){
+			if(!tail){
+				cout << "List is empty. Can't delete!" << endl;
+				return;
+			}
+			
+			if(tail->next == tail){
+				SingleFloatNode *temp = tail;
+				tail = nullptr;
+				delete temp;
+				return;
+			}
+			
+			SingleFloatNode *temp = tail->next;
+		
+		    while (temp->next != tail) {
+		        temp = temp->next;
+		    }
+		
+		    // Delete the old tail
+		    SingleFloatNode *temp2 = tail;
+		
+		    temp->next = tail->next;
+		    tail = temp;
+		
+		    delete temp2;
+		}
+		
+		void deleteAtIndex(int index) {
+
+		    if (!tail) {
+		        cout << "List is empty. Can't delete!" << endl;
+		        return;
+		    }
+		
+		    if (index < 0) {
+		        cout << "Invalid Index." << endl;
+		        return;
+		    }
+		
+		    if (index == 0) {
+		        deleteAtHead();
+		        return;
+		    }
+		
+		    SingleFloatNode *temp = tail->next;
+		    SingleFloatNode *prev = tail;
+		
+		    int j = 0;
+		
+		    do {
+		
+		        if (j == index) {
+		            break;
+		        }
+		
+		        prev = temp;
+		        temp = temp->next;
+		        j++;
+		
+		    } while (temp != tail->next);
+		
+		    if (j != index) {
+		        cout << "Invalid Index." << endl;
+		        return;
+		    }
+		
+		    if (temp == tail) {
+		        deleteAtTail();
+		        return;
+		    }
+		
+		    prev->next = temp->next;
+		    delete temp;
+		}
+		
+		void display() {
+		    if (!tail) {
+		        cout << "List is empty!" << endl;
+		        return;
+		    }
+		
+		    SingleFloatNode *temp = tail->next;
+		
+		    cout << "head";
+		
+		    do {
+		        cout << " -> " << temp->val;
+		        temp = temp->next;
+		    } while (temp != tail->next);
+		
+		    cout << " -> head" << endl;
+		}
+		
+		vector<int> findMatch(float val){
+			vector<int> values;
+			if (!tail) {
+		        cout << "List is empty!" << endl;
+		        return values;
+		    }
+		
+		    SingleFloatNode *temp = tail->next;
+			int i = 0;
+			do {
+		        if(temp->val == val){
+		        	values.push_back(i);
+				}
+				i++;
+		        temp = temp->next;
+		    } while (temp != tail->next);
+			return values;
+		}
+};
+
+//Circular Char Linked list
+class CircularCharLinkedList{
+	private: 
+		SingleCharNode *tail;
+		
+	public: 
+		CircularCharLinkedList(){
+			tail = nullptr;
+		}
+		
+		void insertAtHead(char val){
+		    
+		    if(!tail){
+		    	tail = new SingleCharNode(val);
+		    	tail->next = tail;
+		    	return;
+			}
+			
+			SingleCharNode *newNode = new SingleCharNode(val, tail->next);
+			tail->next = newNode;
+		}
+		
+		void insertAtTail(char val){
+		    
+		    if(!tail){
+		    	tail = new SingleCharNode(val);
+		    	tail->next = tail;
+		    	return;
+			}
+			
+			SingleCharNode *newNode = new SingleCharNode(val, tail->next);
+			tail->next = newNode;
+			tail = newNode;
+		}
+		
+		void insertAtIndex(char val, int index){
+			 if (index < 0) {
+		        cout << "Invalid index." << endl;
+		        return;
+		    }
+		
+		    if (!tail) {
+		        if (index == 0) {
+		            insertAtTail(val);
+		        }
+		        else {
+		            cout << "Index out of bounds. List is empty." << endl;
+		        }
+		        return;
+		    }
+		
+		    if (index == 0) {
+		        insertAtHead(val);
+		        return;
+		    }
+			
+			SingleCharNode *temp = tail->next;
+			int j = 1;
+			do{
+				if(j == index){
+					
+					if(temp == tail){
+						insertAtTail(val);
+						return;
+					}
+					
+					SingleCharNode *newNode = new SingleCharNode(val, temp->next);
+					temp->next = newNode;
+					return;
+				}
+				
+				j++;
+				temp = temp->next;
+			}
+			while(temp != tail->next);
+		}
+		
+		//deletion function
+		void deleteAtHead(){
+			if(!tail){
+				cout << "List is empty. Can't delete!" << endl;
+				return;
+			}
+			
+			if(tail->next == tail){
+				SingleCharNode *temp = tail;
+				tail == nullptr;
+				delete temp;
+				return;
+			}
+			
+			SingleCharNode *temp = tail->next;
+			tail->next = temp->next;
+			delete temp;
+			return;
+		}
+		
+		void deleteAtTail(){
+			if(!tail){
+				cout << "List is empty. Can't delete!" << endl;
+				return;
+			}
+			
+			if(tail->next == tail){
+				SingleCharNode *temp = tail;
+				tail = nullptr;
+				delete temp;
+				return;
+			}
+			
+			SingleCharNode *temp = tail->next;
+		
+		    while (temp->next != tail) {
+		        temp = temp->next;
+		    }
+		
+		    // Delete the old tail
+		    SingleCharNode *temp2 = tail;
+		
+		    temp->next = tail->next;
+		    tail = temp;
+		
+		    delete temp2;
+		}
+		
+		void deleteAtIndex(int index) {
+
+		    if (!tail) {
+		        cout << "List is empty. Can't delete!" << endl;
+		        return;
+		    }
+		
+		    if (index < 0) {
+		        cout << "Invalid Index." << endl;
+		        return;
+		    }
+		
+		    if (index == 0) {
+		        deleteAtHead();
+		        return;
+		    }
+		
+		    SingleCharNode *temp = tail->next;
+		    SingleCharNode *prev = tail;
+		
+		    int j = 0;
+		
+		    do {
+		
+		        if (j == index) {
+		            break;
+		        }
+		
+		        prev = temp;
+		        temp = temp->next;
+		        j++;
+		
+		    } while (temp != tail->next);
+		
+		    if (j != index) {
+		        cout << "Invalid Index." << endl;
+		        return;
+		    }
+		
+		    if (temp == tail) {
+		        deleteAtTail();
+		        return;
+		    }
+		
+		    prev->next = temp->next;
+		    delete temp;
+		}
+		
+		void display() {
+		    if (!tail) {
+		        cout << "List is empty!" << endl;
+		        return;
+		    }
+		
+		    SingleCharNode *temp = tail->next;
+		
+		    cout << "head";
+		
+		    do {
+		        cout << " -> " << temp->val;
+		        temp = temp->next;
+		    } while (temp != tail->next);
+		
+		    cout << " -> head" << endl;
+		}
+		
+		vector<int> findMatch(char val){
+			vector<int> values;
+			if (!tail) {
+		        cout << "List is empty!" << endl;
+		        return values;
+		    }
+		
+		    SingleCharNode *temp = tail->next;
+			int i = 0;
+			do {
+		        if(temp->val == val){
+		        	values.push_back(i);
+				}
+				i++;
+		        temp = temp->next;
+		    } while (temp != tail->next);
+			return values;
+		}
+};
+
+//Circular Long Linked list
+class CircularLongLinkedList{
+	private: 
+		SingleLongNode *tail;
+		
+	public: 
+		CircularLongLinkedList(){
+			tail = nullptr;
+		}
+		
+		void insertAtHead(long val){
+		    
+		    if(!tail){
+		    	tail = new SingleLongNode(val);
+		    	tail->next = tail;
+		    	return;
+			}
+			
+			SingleLongNode *newNode = new SingleLongNode(val, tail->next);
+			tail->next = newNode;
+		}
+		
+		void insertAtTail(long val){
+		    
+		    if(!tail){
+		    	tail = new SingleLongNode(val);
+		    	tail->next = tail;
+		    	return;
+			}
+			
+			SingleLongNode *newNode = new SingleLongNode(val, tail->next);
+			tail->next = newNode;
+			tail = newNode;
+		}
+		
+		void insertAtIndex(long val, int index){
+			 if (index < 0) {
+		        cout << "Invalid index." << endl;
+		        return;
+		    }
+		
+		    if (!tail) {
+		        if (index == 0) {
+		            insertAtTail(val);
+		        }
+		        else {
+		            cout << "Index out of bounds. List is empty." << endl;
+		        }
+		        return;
+		    }
+		
+		    if (index == 0) {
+		        insertAtHead(val);
+		        return;
+		    }
+			
+			SingleLongNode *temp = tail->next;
+			int j = 1;
+			do{
+				if(j == index){
+					
+					if(temp == tail){
+						insertAtTail(val);
+						return;
+					}
+					
+					SingleLongNode *newNode = new SingleLongNode(val, temp->next);
+					temp->next = newNode;
+					return;
+				}
+				
+				j++;
+				temp = temp->next;
+			}
+			while(temp != tail->next);
+		}
+		
+		//deletion function
+		void deleteAtHead(){
+			if(!tail){
+				cout << "List is empty. Can't delete!" << endl;
+				return;
+			}
+			
+			if(tail->next == tail){
+				SingleLongNode *temp = tail;
+				tail == nullptr;
+				delete temp;
+				return;
+			}
+			
+			SingleLongNode *temp = tail->next;
+			tail->next = temp->next;
+			delete temp;
+			return;
+		}
+		
+		void deleteAtTail(){
+			if(!tail){
+				cout << "List is empty. Can't delete!" << endl;
+				return;
+			}
+			
+			if(tail->next == tail){
+				SingleLongNode *temp = tail;
+				tail = nullptr;
+				delete temp;
+				return;
+			}
+			
+			SingleLongNode *temp = tail->next;
+		
+		    while (temp->next != tail) {
+		        temp = temp->next;
+		    }
+		
+		    // Delete the old tail
+		    SingleLongNode *temp2 = tail;
+		
+		    temp->next = tail->next;
+		    tail = temp;
+		
+		    delete temp2;
+		}
+		
+		void deleteAtIndex(int index) {
+
+		    if (!tail) {
+		        cout << "List is empty. Can't delete!" << endl;
+		        return;
+		    }
+		
+		    if (index < 0) {
+		        cout << "Invalid Index." << endl;
+		        return;
+		    }
+		
+		    if (index == 0) {
+		        deleteAtHead();
+		        return;
+		    }
+		
+		    SingleLongNode *temp = tail->next;
+		    SingleLongNode *prev = tail;
+		
+		    int j = 0;
+		
+		    do {
+		
+		        if (j == index) {
+		            break;
+		        }
+		
+		        prev = temp;
+		        temp = temp->next;
+		        j++;
+		
+		    } while (temp != tail->next);
+		
+		    if (j != index) {
+		        cout << "Invalid Index." << endl;
+		        return;
+		    }
+		
+		    if (temp == tail) {
+		        deleteAtTail();
+		        return;
+		    }
+		
+		    prev->next = temp->next;
+		    delete temp;
+		}
+		
+		void display() {
+		    if (!tail) {
+		        cout << "List is empty!" << endl;
+		        return;
+		    }
+		
+		    SingleLongNode *temp = tail->next;
+		
+		    cout << "head";
+		
+		    do {
+		        cout << " -> " << temp->val;
+		        temp = temp->next;
+		    } while (temp != tail->next);
+		
+		    cout << " -> head" << endl;
+		}
+		
+		vector<int> findMatch(long val){
+			vector<int> values;
+			if (!tail) {
+		        cout << "List is empty!" << endl;
+		        return values;
+		    }
+		
+		    SingleLongNode *temp = tail->next;
+			int i = 0;
+			do {
+		        if(temp->val == val){
+		        	values.push_back(i);
+				}
+				i++;
+		        temp = temp->next;
+		    } while (temp != tail->next);
+			return values;
+		}
+};
+
+//Waleed End
+
+
+
+//Linked list classes end
+
+// Deletion options
+int deletionMenu() {
+    int choice;
+    cout << "             DELETE MENU\n";
+    cout << "1. Delete from Beginning\n";
+    cout << "2. Delete from End\n";
+    cout << "3. Delete from a Specific Position\n";
+    cout << "0. Go Back\n";
+    cout << "----------------------------------------\n";
+    cout << "Choose an option: ";
+    cin >> choice;
+
+    return choice;
 }
+
+// Main menu
+int mainMenu() {
+    int choice;
+    cout << "         LINKED LIST MANAGEMENT\n";
+    cout << "1. Singly Linked List\n";
+    cout << "2. Doubly Linked List\n";
+    cout << "3. Circular Linked List\n";
+    cout << "4. Doubly Circular Linked List (Not Available Yet)\n";
+    cout << "0. Exit\n";
+    cout << "----------------------------------------\n";
+    cout << "Choose an option: ";
+    cin >> choice;
+
+    return choice;
+}
+
+// Menu for selecting the data type
+int dataTypeMenu() {
+    int choice;
+    cout << "             DATA TYPE MENU\n";
+    cout << "1. Integer\n";
+    cout << "2. Long\n";
+    cout << "3. Float\n";
+    cout << "4. Character\n";
+    cout << "0. Go Back\n";
+    cout << "----------------------------------------\n";
+    cout << "Choose a data type: ";
+    cin >> choice;
+
+    return choice;
+}
+
+// Linked list operations
+int operationsMenu() {
+    int choice;
+    cout << "          SELECT AN OPERATION\n";
+    cout << "1. Insert\n";
+    cout << "2. Delete\n";
+    cout << "3. Display\n";
+    cout << "4. Search\n";
+    cout << "0. Back to Main Menu\n";
+    cout << "----------------------------------------\n";
+    cout << "Choose an option: ";
+    cin >> choice;
+
+    return choice;
+}
+
+// Insertion options
+int insertionMenu() {
+    int choice;
+
+    cout << "             INSERT MENU\n";
+    cout << "1. Insert at Beginning\n";
+    cout << "2. Insert at End\n";
+    cout << "3. Insert at a Specific Position\n";
+    cout << "0. Go Back\n";
+    cout << "----------------------------------------\n";
+    cout << "Choose an option: ";
+    cin >> choice;
+
+    return choice;
+}
+
+class Menu {
+private:
+    IntegerLinkedList intSinglyList;
+    FloatLinkedList floatSinglyList;
+    CharLinkedList charSinglyList;
+    LongLinkedList longSinglyList;
+
+    DoublyIntegerLinkedList intDoublyList;
+    DoublyFloatLinkedList floatDoublyList;
+    DoublyCharLinkedList charDoublyList;
+    DoublyLongLinkedList longDoublyList;
+
+    // Overloaded operations for Integer Linked List
+    void processListOperations(IntegerLinkedList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                int val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                int val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtEnd(val);
+            } else if (choice == 3) {
+                int val, pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (1-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtEnd();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete: ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.displayList();
+            } else if (choice == 8) {
+                int val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.locateElementInList(val);
+                if (res.size() == 1 && res[0] == -1) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+    // Overloaded operations for Float Linked List
+    void processListOperations(FloatLinkedList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                float val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                float val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtEnd(val);
+            } else if (choice == 3) {
+                float val;
+                int pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (1-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtEnd();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete: ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.displayList();
+            } else if (choice == 8) {
+                float val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.locateElementInList(val);
+                if (res.size() == 1 && res[0] == -1) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+    // Overloaded operations for Char Linked List
+    void processListOperations(CharLinkedList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                char val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                char val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtEnd(val);
+            } else if (choice == 3) {
+                char val;
+                int pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (1-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtEnd();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete: ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.displayList();
+            } else if (choice == 8) {
+                char val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.locateElementInList(val);
+                if (res.size() == 1 && res[0] == -1) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+    // Overloaded operations for Long Linked List
+    void processListOperations(LongLinkedList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                long val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                long val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtEnd(val);
+            } else if (choice == 3) {
+                long val;
+                int pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (1-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtEnd();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete: ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.displayList();
+            } else if (choice == 8) {
+                long val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.locateElementInList(val);
+                if (res.size() == 1 && res[0] == -1) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+    // Overloaded operations for Doubly Integer Linked List
+    void processListOperations(DoublyIntegerLinkedList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                int val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                int val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtEnd(val);
+            } else if (choice == 3) {
+                int val, pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (1-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtEnd();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete: ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.displayList();
+            } else if (choice == 8) {
+                int val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.locateElementInList(val);
+                if (res.size() == 1 && res[0] == -1) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+    // Overloaded operations for Doubly Float Linked List
+    void processListOperations(DoublyFloatLinkedList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                float val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                float val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtEnd(val);
+            } else if (choice == 3) {
+                float val;
+                int pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (1-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtEnd();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete: ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.displayList();
+            } else if (choice == 8) {
+                float val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.locateElementInList(val);
+                if (res.size() == 1 && res[0] == -1) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+    // Overloaded operations for Doubly Char Linked List
+    void processListOperations(DoublyCharLinkedList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                char val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                char val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtEnd(val);
+            } else if (choice == 3) {
+                char val;
+                int pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (1-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtEnd();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete: ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.displayList();
+            } else if (choice == 8) {
+                char val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.locateElementInList(val);
+                if (res.size() == 1 && res[0] == -1) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+    // Overloaded operations for Doubly Long Linked List
+    void processListOperations(DoublyLongLinkedList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                long val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                long val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtEnd(val);
+            } else if (choice == 3) {
+                long val;
+                int pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (1-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtEnd();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete: ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.displayList();
+            } else if (choice == 8) {
+                long val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.locateElementInList(val);
+                if (res.size() == 1 && res[0] == -1) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+public:
+    void displayMainMenu() {
+        int listCategory;
+        do {
+            cout << "\n===================================\n";
+            cout << "      LINKED LIST SYSTEM MENU      \n";
+            cout << "===================================\n";
+            cout << "1. Singly Linked List\n";
+            cout << "2. Doubly Linked List\n";
+            cout << "0. Exit Application\n";
+            cout << "Select List Structure: ";
+            cin >> listCategory;
+
+            if (listCategory == 1 || listCategory == 2) {
+                int dataTypeChoice;
+                do {
+                    cout << "\n--- Select Data Type ---\n";
+                    cout << "1. Integer (int)\n";
+                    cout << "2. Float (float)\n";
+                    cout << "3. Character (char)\n";
+                    cout << "4. Long (long)\n";
+                    cout << "0. Back to Main Menu\n";
+                    cout << "Enter choice: ";
+                    cin >> dataTypeChoice;
+
+                    if (listCategory == 1) { // Singly Linked List
+                        switch (dataTypeChoice) {
+                            case 1:
+                                processListOperations(intSinglyList, "Singly Integer Linked List");
+                                break;
+                            case 2:
+                                processListOperations(floatSinglyList, "Singly Float Linked List");
+                                break;
+                            case 3:
+                                processListOperations(charSinglyList, "Singly Char Linked List");
+                                break;
+                            case 4:
+                                processListOperations(longSinglyList, "Singly Long Linked List");
+                                break;
+                            case 0:
+                                break;
+                            default:
+                                cout << "Invalid choice! Please try again.\n";
+                        }
+                    } else { // Doubly Linked List
+                        switch (dataTypeChoice) {
+                            case 1:
+                                processListOperations(intDoublyList, "Doubly Integer Linked List");
+                                break;
+                            case 2:
+                                processListOperations(floatDoublyList, "Doubly Float Linked List");
+                                break;
+                            case 3:
+                                processListOperations(charDoublyList, "Doubly Char Linked List");
+                                break;
+                            case 4:
+                                processListOperations(longDoublyList, "Doubly Long Linked List");
+                                break;
+                            case 0:
+                                break;
+                            default:
+                                cout << "Invalid choice! Please try again.\n";
+                        }
+                    }
+                } while (dataTypeChoice != 0);
+            } else if (listCategory != 0) {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (listCategory != 0);
+
+        cout << "Exiting application. Goodbye!\n";
+    }
+};
+
+// ==========================================
+// Main Function
+// ==========================================
+
+int main() {
+    Menu appMenu;
+    appMenu.displayMainMenu();
+    return 0;
+}
+
