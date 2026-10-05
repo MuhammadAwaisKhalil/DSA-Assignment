@@ -302,6 +302,8 @@ class IntegerLinkedList
 
         }
 
+        return loc;
+
         
     }
 
@@ -487,7 +489,7 @@ class FloatLinkedList
             }
 
         }
-
+        return loc;
         
     }
 
@@ -672,6 +674,7 @@ class CharLinkedList
             }
 
         }
+        return loc;
 
     }
 };
@@ -855,6 +858,7 @@ class LongLinkedList
             }
 
         }
+        return loc;
         
     }
 
