@@ -2568,6 +2568,910 @@ class CircularLongLinkedList{
 
 //Waleed End
 
+//Abdul Rahman Doubly Circular Linked list
+
+class DoublyIntegerCircularList
+{
+    public:
+    DoublyIntegerNode *head;
+    DoublyIntegerNode *tail;
+
+    DoublyIntegerCircularList()
+    {
+        head = nullptr;
+        tail = nullptr;
+    }
+
+    ~DoublyIntegerCircularList()
+    {
+        if(head == nullptr)
+            return;
+
+        while(head != tail)
+        {
+            DoublyIntegerNode *temp=head;
+            head=head->next;
+            delete temp;
+        }
+        delete head;
+        head = tail = nullptr;
+    }
+
+    void insertAtHead(int val)
+    {
+        if(head == nullptr)
+        {
+            head  = new DoublyIntegerNode(val);
+            tail = head;
+            head->next = head;
+            head->prev = head;
+        }
+        else
+        {
+            DoublyIntegerNode *temp = head;
+            head = new DoublyIntegerNode(val, tail, temp);
+            temp->prev = head;
+            tail->next = head;
+        }
+    }
+
+    void insertAtEnd(int val)
+    {
+        if(head == nullptr)
+        {
+            head  = new DoublyIntegerNode(val);
+            tail = head;
+            head->next = head;
+            head->prev = head;
+        }
+        else
+        {
+            DoublyIntegerNode *temp = tail;
+            tail = new DoublyIntegerNode(val, temp, head);
+            temp->next = tail;
+            head->prev = tail;
+        }
+    }
+
+    void insertAtIndex(int val, int pos)
+    {
+        if(pos == 0)
+        {
+            insertAtHead(val);
+            return;
+        }
+        if(head == nullptr)
+            return;
+
+        if(head == tail && pos == 1)
+        {
+            insertAtEnd(val);
+            return;
+        }
+        
+        int index = 1;
+        DoublyIntegerNode *cur = head->next;
+        
+        while(cur!= head)
+        {
+            if(index == pos)
+            {
+                DoublyIntegerNode *temp = cur->prev;
+                cur = new DoublyIntegerNode(val, temp, temp->next);
+                temp->next = cur;
+                cur->next->prev = cur;
+                return;
+            }
+            else if(cur->next == head && index+1 == pos)
+            {
+                insertAtEnd(val);
+                return;
+            }
+            index++;
+            cur = cur->next;
+        }
+
+        return;
+    }
+
+    void deleteAtHead()
+    {
+        if(head == nullptr)
+        {
+            return;
+        }
+        if(head->next == head)
+        {
+            delete head;
+            head = nullptr;
+            tail = nullptr;
+            return;
+        }
+        DoublyIntegerNode *temp = head;
+        head = head->next;
+        delete temp;
+        head->prev = tail;
+        tail->next = head;
+    }
+
+    void deleteAtTail()
+    {
+        if(head == nullptr)
+        {
+            return;
+        }
+        if(tail->next == tail)
+        {
+            delete tail;
+            tail = nullptr;
+            head = nullptr;
+            return;
+        }
+        DoublyIntegerNode *temp = tail;
+        tail = tail->prev;
+        tail->next = temp->next;
+        head->prev = tail;
+        delete temp;
+        
+    }
+
+    void deleteAtIndex(int pos)
+    {
+        if(head == nullptr)
+        {
+            return;
+        }
+        if(pos == 0)
+        {
+            deleteAtHead();
+            return;
+        }
+        int index = 1;
+        DoublyIntegerNode *cur = head->next;
+
+        while(cur != tail->next)
+        {
+            if(index == pos)
+            {
+                if(cur == tail)
+                {
+                    deleteAtTail();
+                    return;
+                }
+                else
+                {
+                    DoublyIntegerNode *temp = cur->prev;
+                    temp->next = cur->next;
+                    cur->next->prev = temp;
+                    delete cur;
+                    return;
+                }
+            }
+            index++;
+            cur = cur->next;
+        }
+
+        return;
+    }
+
+    void display()
+    {
+        if(head == nullptr)
+        {
+            cout << "Empty!" << endl;
+            return;
+        }
+        DoublyIntegerNode *cur = head;
+
+        do
+        {
+            cout << cur->val << " -> ";
+            cur = cur->next;
+        } while (cur != head);
+        
+        cout << "NULL" << endl;
+    }
+
+    vector<int> findMatch(int val)
+    {
+        vector<int> vals;
+        
+
+        if(head == nullptr)
+            return vals;
+        if(head->val == val)
+            vals.push_back(0);    
+        DoublyIntegerNode *cur = head->next;
+        int index = 1;
+
+        while (cur != head)
+        {
+            if(cur->val == val)
+                vals.push_back(index);
+            cur = cur->next;
+            index++;
+        }
+
+        return vals;
+
+    }
+};
+
+class DoublyFloatCircularList
+{
+    public:
+    DoublyFloatNode *head;
+    DoublyFloatNode *tail;
+
+    DoublyFloatCircularList()
+    {
+        head = nullptr;
+        tail = nullptr;
+    }
+
+    ~DoublyFloatCircularList()
+    {
+        if(head == nullptr)
+            return;
+
+        while(head != tail)
+        {
+            DoublyFloatNode *temp = head;
+            head = head->next;
+            delete temp;
+        }
+        delete head;
+        head = tail = nullptr;
+    }
+
+    void insertAtHead(float val)
+    {
+        if(head == nullptr)
+        {
+            head = new DoublyFloatNode(val);
+            tail = head;
+            head->next = head;
+            head->prev = head;
+        }
+        else
+        {
+            DoublyFloatNode *temp = head;
+            head = new DoublyFloatNode(val, tail, temp);
+            temp->prev = head;
+            tail->next = head;
+        }
+    }
+
+    void insertAtEnd(float val)
+    {
+        if(head == nullptr)
+        {
+            head = new DoublyFloatNode(val);
+            tail = head;
+            head->next = head;
+            head->prev = head;
+        }
+        else
+        {
+            DoublyFloatNode *temp = tail;
+            tail = new DoublyFloatNode(val, temp, head);
+            temp->next = tail;
+            head->prev = tail;
+        }
+    }
+
+    void insertAtIndex(float val, int pos)
+    {
+        if(pos == 0)
+        {
+            insertAtHead(val);
+            return;
+        }
+        if(head == nullptr)
+            return;
+
+        if(head == tail && pos == 1)
+        {
+            insertAtEnd(val);
+            return;
+        }
+        
+        int index = 1;
+        DoublyFloatNode *cur = head->next;
+        
+        while(cur != head)
+        {
+            if(index == pos)
+            {
+                DoublyFloatNode *temp = cur->prev;
+                cur = new DoublyFloatNode(val, temp, temp->next);
+                temp->next = cur;
+                cur->next->prev = cur;
+                return;
+            }
+            else if(cur->next == head && index + 1 == pos)
+            {
+                insertAtEnd(val);
+                return;
+            }
+            index++;
+            cur = cur->next;
+        }
+
+        return;
+    }
+
+    void deleteAtHead()
+    {
+        if(head == nullptr)
+        {
+            return;
+        }
+        if(head->next == head)
+        {
+            delete head;
+            head = nullptr;
+            tail = nullptr;
+            return;
+        }
+        DoublyFloatNode *temp = head;
+        head = head->next;
+        delete temp;
+        head->prev = tail;
+        tail->next = head;
+    }
+
+    void deleteAtTail()
+    {
+        if(head == nullptr)
+        {
+            return;
+        }
+        if(tail->next == tail)
+        {
+            delete tail;
+            tail = nullptr;
+            head = nullptr;
+            return;
+        }
+        DoublyFloatNode *temp = tail;
+        tail = tail->prev;
+        tail->next = temp->next;
+        head->prev = tail;
+        delete temp;
+    }
+
+    void deleteAtIndex(int pos)
+    {
+        if(head == nullptr)
+        {
+            return;
+        }
+        if(pos == 0)
+        {
+            deleteAtHead();
+            return;
+        }
+        int index = 1;
+        DoublyFloatNode *cur = head->next;
+
+        while(cur != tail->next)
+        {
+            if(index == pos)
+            {
+                if(cur == tail)
+                {
+                    deleteAtTail();
+                    return;
+                }
+                else
+                {
+                    DoublyFloatNode *temp = cur->prev;
+                    temp->next = cur->next;
+                    cur->next->prev = temp;
+                    delete cur;
+                    return;
+                }
+            }
+            index++;
+            cur = cur->next;
+        }
+
+        return;
+    }
+
+    void display()
+    {
+        if(head == nullptr)
+        {
+            cout << "Empty!" << endl;
+            return;
+        }
+        DoublyFloatNode *cur = head;
+
+        do
+        {
+            cout << cur->val << " -> ";
+            cur = cur->next;
+        } while (cur != head);
+        
+        cout << "NULL" << endl;
+    }
+
+    vector<int> findMatch(float val)
+    {
+        vector<int> vals;
+
+        if(head == nullptr)
+            return vals;
+        if(head->val == val)
+            vals.push_back(0);    
+        DoublyFloatNode *cur = head->next;
+        int index = 1;
+
+        while (cur != head)
+        {
+            if(cur->val == val)
+                vals.push_back(index);
+            cur = cur->next;
+            index++;
+        }
+
+        return vals;
+    }
+};
+
+class DoublyCharCircularList
+{
+    public:
+    DoublyCharNode *head;
+    DoublyCharNode *tail;
+
+    DoublyCharCircularList()
+    {
+        head = nullptr;
+        tail = nullptr;
+    }
+
+    ~DoublyCharCircularList()
+    {
+        if(head == nullptr)
+            return;
+
+        while(head != tail)
+        {
+            DoublyCharNode *temp = head;
+            head = head->next;
+            delete temp;
+        }
+        delete head;
+        head = tail = nullptr;
+    }
+
+    void insertAtHead(char val)
+    {
+        if(head == nullptr)
+        {
+            head = new DoublyCharNode(val);
+            tail = head;
+            head->next = head;
+            head->prev = head;
+        }
+        else
+        {
+            DoublyCharNode *temp = head;
+            head = new DoublyCharNode(val, tail, temp);
+            temp->prev = head;
+            tail->next = head;
+        }
+    }
+
+    void insertAtEnd(char val)
+    {
+        if(head == nullptr)
+        {
+            head = new DoublyCharNode(val);
+            tail = head;
+            head->next = head;
+            head->prev = head;
+        }
+        else
+        {
+            DoublyCharNode *temp = tail;
+            tail = new DoublyCharNode(val, temp, head);
+            temp->next = tail;
+            head->prev = tail;
+        }
+    }
+
+    void insertAtIndex(char val, int pos)
+    {
+        if(pos == 0)
+        {
+            insertAtHead(val);
+            return;
+        }
+        if(head == nullptr)
+            return;
+
+        if(head == tail && pos == 1)
+        {
+            insertAtEnd(val);
+            return;
+        }
+        
+        int index = 1;
+        DoublyCharNode *cur = head->next;
+        
+        while(cur != head)
+        {
+            if(index == pos)
+            {
+                DoublyCharNode *temp = cur->prev;
+                cur = new DoublyCharNode(val, temp, temp->next);
+                temp->next = cur;
+                cur->next->prev = cur;
+                return;
+            }
+            else if(cur->next == head && index + 1 == pos)
+            {
+                insertAtEnd(val);
+                return;
+            }
+            index++;
+            cur = cur->next;
+        }
+
+        return;
+    }
+
+    void deleteAtHead()
+    {
+        if(head == nullptr)
+        {
+            return;
+        }
+        if(head->next == head)
+        {
+            delete head;
+            head = nullptr;
+            tail = nullptr;
+            return;
+        }
+        DoublyCharNode *temp = head;
+        head = head->next;
+        delete temp;
+        head->prev = tail;
+        tail->next = head;
+    }
+
+    void deleteAtTail()
+    {
+        if(head == nullptr)
+        {
+            return;
+        }
+        if(tail->next == tail)
+        {
+            delete tail;
+            tail = nullptr;
+            head = nullptr;
+            return;
+        }
+        DoublyCharNode *temp = tail;
+        tail = tail->prev;
+        tail->next = temp->next;
+        head->prev = tail;
+        delete temp;
+    }
+
+    void deleteAtIndex(int pos)
+    {
+        if(head == nullptr)
+        {
+            return;
+        }
+        if(pos == 0)
+        {
+            deleteAtHead();
+            return;
+        }
+        int index = 1;
+        DoublyCharNode *cur = head->next;
+
+        while(cur != tail->next)
+        {
+            if(index == pos)
+            {
+                if(cur == tail)
+                {
+                    deleteAtTail();
+                    return;
+                }
+                else
+                {
+                    DoublyCharNode *temp = cur->prev;
+                    temp->next = cur->next;
+                    cur->next->prev = temp;
+                    delete cur;
+                    return;
+                }
+            }
+            index++;
+            cur = cur->next;
+        }
+
+        return;
+    }
+
+    void display()
+    {
+        if(head == nullptr)
+        {
+            cout << "Empty!" << endl;
+            return;
+        }
+        DoublyCharNode *cur = head;
+
+        do
+        {
+            cout << cur->val << " -> ";
+            cur = cur->next;
+        } while (cur != head);
+        
+        cout << "NULL" << endl;
+    }
+
+    vector<int> findMatch(char val)
+    {
+        vector<int> vals;
+
+        if(head == nullptr)
+            return vals;
+        if(head->val == val)
+            vals.push_back(0);    
+        DoublyCharNode *cur = head->next;
+        int index = 1;
+
+        while (cur != head)
+        {
+            if(cur->val == val)
+                vals.push_back(index);
+            cur = cur->next;
+            index++;
+        }
+
+        return vals;
+    }
+};
+
+class DoublyLongCircularList
+{
+    public:
+    DoublyLongNode *head;
+    DoublyLongNode *tail;
+
+    DoublyLongCircularList()
+    {
+        head = nullptr;
+        tail = nullptr;
+    }
+
+    ~DoublyLongCircularList()
+    {
+        if(head == nullptr)
+            return;
+
+        while(head != tail)
+        {
+            DoublyLongNode *temp = head;
+            head = head->next;
+            delete temp;
+        }
+        delete head;
+        head = tail = nullptr;
+    }
+
+    void insertAtHead(long val)
+    {
+        if(head == nullptr)
+        {
+            head = new DoublyLongNode(val);
+            tail = head;
+            head->next = head;
+            head->prev = head;
+        }
+        else
+        {
+            DoublyLongNode *temp = head;
+            head = new DoublyLongNode(val, tail, temp);
+            temp->prev = head;
+            tail->next = head;
+        }
+    }
+
+    void insertAtEnd(long val)
+    {
+        if(head == nullptr)
+        {
+            head = new DoublyLongNode(val);
+            tail = head;
+            head->next = head;
+            head->prev = head;
+        }
+        else
+        {
+            DoublyLongNode *temp = tail;
+            tail = new DoublyLongNode(val, temp, head);
+            temp->next = tail;
+            head->prev = tail;
+        }
+    }
+
+    void insertAtIndex(long val, int pos)
+    {
+        if(pos == 0)
+        {
+            insertAtHead(val);
+            return;
+        }
+        if(head == nullptr)
+            return;
+
+        if(head == tail && pos == 1)
+        {
+            insertAtEnd(val);
+            return;
+        }
+        
+        int index = 1;
+        DoublyLongNode *cur = head->next;
+        
+        while(cur != head)
+        {
+            if(index == pos)
+            {
+                DoublyLongNode *temp = cur->prev;
+                cur = new DoublyLongNode(val, temp, temp->next);
+                temp->next = cur;
+                cur->next->prev = cur;
+                return;
+            }
+            else if(cur->next == head && index + 1 == pos)
+            {
+                insertAtEnd(val);
+                return;
+            }
+            index++;
+            cur = cur->next;
+        }
+
+        return;
+    }
+
+    void deleteAtHead()
+    {
+        if(head == nullptr)
+        {
+            return;
+        }
+        if(head->next == head)
+        {
+            delete head;
+            head = nullptr;
+            tail = nullptr;
+            return;
+        }
+        DoublyLongNode *temp = head;
+        head = head->next;
+        delete temp;
+        head->prev = tail;
+        tail->next = head;
+    }
+
+    void deleteAtTail()
+    {
+        if(head == nullptr)
+        {
+            return;
+        }
+        if(tail->next == tail)
+        {
+            delete tail;
+            tail = nullptr;
+            head = nullptr;
+            return;
+        }
+        DoublyLongNode *temp = tail;
+        tail = tail->prev;
+        tail->next = temp->next;
+        head->prev = tail;
+        delete temp;
+    }
+
+    void deleteAtIndex(int pos)
+    {
+        if(head == nullptr)
+        {
+            return;
+        }
+        if(pos == 0)
+        {
+            deleteAtHead();
+            return;
+        }
+        int index = 1;
+        DoublyLongNode *cur = head->next;
+
+        while(cur != tail->next)
+        {
+            if(index == pos)
+            {
+                if(cur == tail)
+                {
+                    deleteAtTail();
+                    return;
+                }
+                else
+                {
+                    DoublyLongNode *temp = cur->prev;
+                    temp->next = cur->next;
+                    cur->next->prev = temp;
+                    delete cur;
+                    return;
+                }
+            }
+            index++;
+            cur = cur->next;
+        }
+
+        return;
+    }
+
+    void display()
+    {
+        if(head == nullptr)
+        {
+            cout << "Empty!" << endl;
+            return;
+        }
+        DoublyLongNode *cur = head;
+
+        do
+        {
+            cout << cur->val << " -> ";
+            cur = cur->next;
+        } while (cur != head);
+        
+        cout << "NULL" << endl;
+    }
+
+    vector<int> findMatch(long val)
+    {
+        vector<int> vals;
+
+        if(head == nullptr)
+            return vals;
+        if(head->val == val)
+            vals.push_back(0);    
+        DoublyLongNode *cur = head->next;
+        int index = 1;
+
+        while (cur != head)
+        {
+            if(cur->val == val)
+                vals.push_back(index);
+            cur = cur->next;
+            index++;
+        }
+
+        return vals;
+    }
+};
+
+
+
+// Abdul Rahman end
 
 
 //Linked list classes end
