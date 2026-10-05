@@ -3476,6 +3476,7 @@ class DoublyLongCircularList
 
 //Linked list classes end
 
+
 // Deletion options
 int deletionMenu() {
     int choice;
@@ -3566,6 +3567,16 @@ private:
     DoublyFloatLinkedList floatDoublyList;
     DoublyCharLinkedList charDoublyList;
     DoublyLongLinkedList longDoublyList;
+
+    CircularIntegerLinkedList intCircularList;
+    CircularFloatLinkedList floatCircularList;
+    CircularCharLinkedList charCircularList;
+    CircularLongLinkedList longCircularList;
+
+    DoublyIntegerCircularList intDoublyCircularList;
+    DoublyFloatCircularList floatDoublyCircularList;
+    DoublyCharCircularList charDoublyCircularList;
+    DoublyLongCircularList longDoublyCircularList;
 
     // Overloaded operations for Integer Linked List
     void processListOperations(IntegerLinkedList &list, const string &typeName) {
@@ -4117,6 +4128,556 @@ private:
         } while (choice != 0);
     }
 
+
+    // Overloaded operations for Circular Integer Linked List
+    void processListOperations(CircularIntegerLinkedList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                int val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                int val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtTail(val);
+            } else if (choice == 3) {
+                int val, pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (0-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtTail();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete (0-based index): ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.display();
+            } else if (choice == 8) {
+                int val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.findMatch(val);
+                if (res.empty()) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+    // Overloaded operations for Circular Float Linked List
+    void processListOperations(CircularFloatLinkedList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                float val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                float val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtTail(val);
+            } else if (choice == 3) {
+                float val, pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (0-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, static_cast<int>(pos));
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtTail();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete (0-based index): ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.display();
+            } else if (choice == 8) {
+                float val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.findMatch(val);
+                if (res.empty()) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+    // Overloaded operations for Circular Char Linked List
+    void processListOperations(CircularCharLinkedList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                char val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                char val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtTail(val);
+            } else if (choice == 3) {
+                char val;
+                int pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (0-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtTail();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete (0-based index): ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.display();
+            } else if (choice == 8) {
+                char val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.findMatch(val);
+                if (res.empty()) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+    // Overloaded operations for Circular Long Linked List
+    void processListOperations(CircularLongLinkedList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                long val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                long val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtTail(val);
+            } else if (choice == 3) {
+                long val;
+                int pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (0-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtTail();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete (0-based index): ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.display();
+            } else if (choice == 8) {
+                long val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.findMatch(val);
+                if (res.empty()) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+    // Overloaded operations for Doubly Circular Integer Linked List
+    void processListOperations(DoublyIntegerCircularList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                int val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                int val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtEnd(val);
+            } else if (choice == 3) {
+                int val, pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (0-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtTail();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete (0-based index): ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.display();
+            } else if (choice == 8) {
+                int val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.findMatch(val);
+                if (res.empty()) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+    // Overloaded operations for Doubly Circular Float Linked List
+    void processListOperations(DoublyFloatCircularList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                float val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                float val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtEnd(val);
+            } else if (choice == 3) {
+                float val;
+                int pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (0-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtTail();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete (0-based index): ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.display();
+            } else if (choice == 8) {
+                float val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.findMatch(val);
+                if (res.empty()) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+    // Overloaded operations for Doubly Circular Char Linked List
+    void processListOperations(DoublyCharCircularList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                char val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                char val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtEnd(val);
+            } else if (choice == 3) {
+                char val;
+                int pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (0-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtTail();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete (0-based index): ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.display();
+            } else if (choice == 8) {
+                char val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.findMatch(val);
+                if (res.empty()) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
+    // Overloaded operations for Doubly Circular Long Linked List
+    void processListOperations(DoublyLongCircularList &list, const string &typeName) {
+        int choice;
+        do {
+            cout << "\n-----------------------------------\n";
+            cout << "   " << typeName << " Operations Menu\n";
+            cout << "-----------------------------------\n";
+            cout << "1. Insert at Head\n";
+            cout << "2. Insert at End\n";
+            cout << "3. Insert at Index/Position\n";
+            cout << "4. Delete at Head\n";
+            cout << "5. Delete at End\n";
+            cout << "6. Delete at Index/Position\n";
+            cout << "7. Display List\n";
+            cout << "8. Locate Element\n";
+            cout << "0. Back to Data Type Selection\n";
+            cout << "Enter your choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+                long val;
+                cout << "Enter value to insert at head: ";
+                cin >> val;
+                list.insertAtHead(val);
+            } else if (choice == 2) {
+                long val;
+                cout << "Enter value to insert at end: ";
+                cin >> val;
+                list.insertAtEnd(val);
+            } else if (choice == 3) {
+                long val;
+                int pos;
+                cout << "Enter value to insert: ";
+                cin >> val;
+                cout << "Enter position (0-based index): ";
+                cin >> pos;
+                list.insertAtIndex(val, pos);
+            } else if (choice == 4) {
+                list.deleteAtHead();
+            } else if (choice == 5) {
+                list.deleteAtTail();
+            } else if (choice == 6) {
+                int pos;
+                cout << "Enter position to delete (0-based index): ";
+                cin >> pos;
+                list.deleteAtIndex(pos);
+            } else if (choice == 7) {
+                cout << "Current List:\n";
+                list.display();
+            } else if (choice == 8) {
+                long val;
+                cout << "Enter value to locate: ";
+                cin >> val;
+                vector<int> res = list.findMatch(val);
+                if (res.empty()) {
+                    cout << "Element " << val << " not found in the list.\n";
+                } else {
+                    cout << "Element " << val << " found at position(s): ";
+                    for (int pos : res) cout << pos << " ";
+                    cout << "\n";
+                }
+            } else if (choice == 0) {
+                cout << "Returning to previous menu...\n";
+            } else {
+                cout << "Invalid choice! Please try again.\n";
+            }
+        } while (choice != 0);
+    }
+
 public:
     void displayMainMenu() {
         int listCategory;
@@ -4126,11 +4687,13 @@ public:
             cout << "===================================\n";
             cout << "1. Singly Linked List\n";
             cout << "2. Doubly Linked List\n";
+            cout << "3. Circular Singly Linked List\n";
+            cout << "4. Doubly Circular Linked List\n";
             cout << "0. Exit Application\n";
             cout << "Select List Structure: ";
             cin >> listCategory;
 
-            if (listCategory == 1 || listCategory == 2) {
+            if (listCategory >= 1 && listCategory <= 4) {
                 int dataTypeChoice;
                 do {
                     cout << "\n--- Select Data Type ---\n";
@@ -4161,7 +4724,7 @@ public:
                             default:
                                 cout << "Invalid choice! Please try again.\n";
                         }
-                    } else { // Doubly Linked List
+                    } else if (listCategory == 2) { // Doubly Linked List
                         switch (dataTypeChoice) {
                             case 1:
                                 processListOperations(intDoublyList, "Doubly Integer Linked List");
@@ -4180,6 +4743,44 @@ public:
                             default:
                                 cout << "Invalid choice! Please try again.\n";
                         }
+                    } else if (listCategory == 3) { // Circular Singly Linked List
+                        switch (dataTypeChoice) {
+                            case 1:
+                                processListOperations(intCircularList, "Circular Integer Linked List");
+                                break;
+                            case 2:
+                                processListOperations(floatCircularList, "Circular Float Linked List");
+                                break;
+                            case 3:
+                                processListOperations(charCircularList, "Circular Char Linked List");
+                                break;
+                            case 4:
+                                processListOperations(longCircularList, "Circular Long Linked List");
+                                break;
+                            case 0:
+                                break;
+                            default:
+                                cout << "Invalid choice! Please try again.\n";
+                        }
+                    } else { // Doubly Circular Linked List
+                        switch (dataTypeChoice) {
+                            case 1:
+                                processListOperations(intDoublyCircularList, "Doubly Circular Integer Linked List");
+                                break;
+                            case 2:
+                                processListOperations(floatDoublyCircularList, "Doubly Circular Float Linked List");
+                                break;
+                            case 3:
+                                processListOperations(charDoublyCircularList, "Doubly Circular Char Linked List");
+                                break;
+                            case 4:
+                                processListOperations(longDoublyCircularList, "Doubly Circular Long Linked List");
+                                break;
+                            case 0:
+                                break;
+                            default:
+                                cout << "Invalid choice! Please try again.\n";
+                        }
                     }
                 } while (dataTypeChoice != 0);
             } else if (listCategory != 0) {
@@ -4189,6 +4790,7 @@ public:
 
         cout << "Exiting application. Goodbye!\n";
     }
+
 };
 
 // ==========================================
